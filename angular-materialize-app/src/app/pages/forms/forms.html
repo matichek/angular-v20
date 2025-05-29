@@ -1,0 +1,226 @@
+<div class="container" style="margin-top: 2rem;">
+  <div class="row">
+    <div class="col s12">
+      <h2>Forms Examples</h2>
+      <p class="flow-text">Comprehensive examples of Materialize CSS form components in Angular v20.</p>
+    </div>
+  </div>
+
+  <!-- Basic Input Fields -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Input Fields</h4>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+          <span class="helper-text" data-error="Invalid email" data-success="Valid email">Enter your email address</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Textarea -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Textarea</h4>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Message</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Select Dropdown -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Select Dropdown</h4>
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <select id="select1">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+          <label for="select1">Select Option</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <select id="select2" multiple>
+            <option value="" disabled selected>Choose your options</option>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+            <option value="4">Option 4</option>
+          </select>
+          <label for="select2">Multiple Select</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkboxes -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Checkboxes</h4>
+      <p>
+        <label>
+          <input type="checkbox" />
+          <span>Red</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input type="checkbox" checked="checked" />
+          <span>Yellow</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input type="checkbox" class="filled-in" checked="checked" />
+          <span>Filled in</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input id="indeterminate-checkbox" type="checkbox" />
+          <span>Indeterminate Style</span>
+        </label>
+      </p>
+    </div>
+  </div>
+
+  <!-- Radio Buttons -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Radio Buttons</h4>
+      <p>
+        <label>
+          <input name="group1" type="radio" checked />
+          <span>Red</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="group1" type="radio" />
+          <span>Yellow</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="group1" type="radio" class="with-gap" />
+          <span>Green</span>
+        </label>
+      </p>
+      <p>
+        <label>
+          <input name="group1" type="radio" class="with-gap" />
+          <span>Purple</span>
+        </label>
+      </p>
+    </div>
+  </div>
+
+  <!-- Switches -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Switches</h4>
+      <div class="switch">
+        <label>
+          Off
+          <input type="checkbox">
+          <span class="lever"></span>
+          On
+        </label>
+      </div>
+      <br><br>
+      <div class="switch">
+        <label>
+          Off
+          <input type="checkbox" checked>
+          <span class="lever"></span>
+          On
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Range Slider -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Range Slider</h4>
+      <p class="range-field">
+        <input type="range" id="test5" min="0" max="100" />
+      </p>
+    </div>
+  </div>
+
+  <!-- Date Picker -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Date Picker</h4>
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" class="datepicker" id="datepicker">
+          <label for="datepicker">Select Date</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" class="timepicker" id="timepicker">
+          <label for="timepicker">Select Time</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- File Input -->
+  <div class="row">
+    <div class="col s12">
+      <h4>File Input</h4>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>File</span>
+          <input type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form Actions -->
+  <div class="row">
+    <div class="col s12">
+      <h4>Form Actions</h4>
+      <button class="btn waves-effect waves-light" type="submit" name="action">
+        Submit
+        <i class="material-icons right">send</i>
+      </button>
+      <button class="btn waves-effect waves-light red" type="reset" style="margin-left: 10px;">
+        Reset
+        <i class="material-icons right">clear</i>
+      </button>
+      <button class="btn-flat waves-effect" style="margin-left: 10px;">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
