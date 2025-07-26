@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <h2>Form and Table</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <!-- name, surname, email, address, post number, post, chekcbox "Horm holder" -->
+      <form id="form">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="name" type="text" class="validate">
+            <label for="name">Name</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="surname" type="text" class="validate">
+            <label for="surname">Surname</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="email" type="email" class="validate">
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="address" type="text" class="validate">
+            <label for="address">Address</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="post-number" type="text" class="validate">
+            <label for="post-number">Post Number</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="post" type="text" class="validate">
+            <label for="post">Post</label>
+          </div>
+          <div class="input-field col s12">
+            <label for="form-holder">
+              <input id="form-holder" type="checkbox" class="validate">
+              <span>Horm holder</span>
+            </label>
+          </div>
+                     <!-- add button to add additional passengers -->
+           <div class="input-field col s12">
+             <button id="add-passenger" class="btn waves-effect waves-light" type="button" (click)="addPassenger()">Add Passenger</button>
+           </div>
+
+
+
+                     <div class="input-field col s12">
+             <button id="submit-button" class="btn waves-effect waves-light" type="submit" (click)="handleSubmit()">Submit</button>
+           </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
