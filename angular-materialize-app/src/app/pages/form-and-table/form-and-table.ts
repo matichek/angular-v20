@@ -55,6 +55,9 @@ export class FormAndTableComponent implements AfterViewInit {
 
     // Initial debug data update
     this.updateDebugData();
+
+    // Expose component to window for script access
+    (window as any).angularComponent = this;
   }
 
   setupFormListeners() {
@@ -80,40 +83,46 @@ export class FormAndTableComponent implements AfterViewInit {
     newForm.innerHTML = `
       <div class="card-content">
         <div class="card-title">
-          Passenger ${this.passengerCount}
-          <button class="btn-small red right" onclick="document.dispatchEvent(new CustomEvent('removePassenger', {detail: ${this.passengerCount}}))">
+          <span><i class="material-icons">person</i> Passenger ${this.passengerCount}</span>
+          <button class="btn-small red waves-effect waves-light" onclick="document.dispatchEvent(new CustomEvent('removePassenger', {detail: ${this.passengerCount}}))">
             <i class="material-icons">delete</i>
           </button>
         </div>
         <div class="row">
           <div class="input-field col s6">
+            <i class="material-icons prefix">person</i>
             <input id="name-${this.passengerCount}" type="text" class="validate">
             <label for="name-${this.passengerCount}">Name</label>
           </div>
           <div class="input-field col s6">
+            <i class="material-icons prefix">person_outline</i>
             <input id="surname-${this.passengerCount}" type="text" class="validate">
             <label for="surname-${this.passengerCount}">Surname</label>
           </div>
           <div class="input-field col s12">
+            <i class="material-icons prefix">email</i>
             <input id="email-${this.passengerCount}" type="email" class="validate">
             <label for="email-${this.passengerCount}">Email</label>
           </div>
           <div class="input-field col s12">
+            <i class="material-icons prefix">location_on</i>
             <input id="address-${this.passengerCount}" type="text" class="validate">
             <label for="address-${this.passengerCount}">Address</label>
           </div>
-          <div class="input-field col s12">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">markunread_mailbox</i>
             <input id="post-number-${this.passengerCount}" type="text" class="validate">
             <label for="post-number-${this.passengerCount}">Post Number</label>
           </div>
-          <div class="input-field col s12">
+          <div class="input-field col s6">
+            <i class="material-icons prefix">business</i>
             <input id="post-${this.passengerCount}" type="text" class="validate">
             <label for="post-${this.passengerCount}">Post</label>
           </div>
           <div class="input-field col s12 mb-20">
             <label for="form-holder-${this.passengerCount}">
               <input id="form-holder-${this.passengerCount}" type="checkbox" class="validate">
-              <span>Form holder</span>
+              <span><i class="material-icons tiny">verified_user</i> Form holder</span>
             </label>
           </div>
         </div>
@@ -171,13 +180,14 @@ export class FormAndTableComponent implements AfterViewInit {
     newRoom.innerHTML = `
       <div class="card-content">
         <div class="card-title">
-          Room ${this.roomCount}
-          <button class="btn-small red right" onclick="document.dispatchEvent(new CustomEvent('removeRoom', {detail: ${this.roomCount}}))">
+          <span><i class="material-icons">hotel</i> Room ${this.roomCount}</span>
+          <button class="btn-small red waves-effect waves-light" onclick="document.dispatchEvent(new CustomEvent('removeRoom', {detail: ${this.roomCount}}))">
             <i class="material-icons">delete</i>
           </button>
         </div>
         <div class="row">
           <div class="input-field col s12">
+            <i class="material-icons prefix">bed</i>
             <select id="bed-count-${this.roomCount}" class="validate">
               <option value="" disabled selected>Choose bed count</option>
               <option value="1">1 Bed</option>
@@ -187,6 +197,7 @@ export class FormAndTableComponent implements AfterViewInit {
             <label for="bed-count-${this.roomCount}">Bed Count</label>
           </div>
           <div class="input-field col s12">
+            <i class="material-icons prefix">group</i>
             <select id="passenger-assignment-${this.roomCount}" class="validate" multiple>
               <option value="" disabled>Assign passengers</option>
               ${passengerOptions}

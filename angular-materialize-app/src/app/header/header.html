@@ -1,19 +1,125 @@
-<nav class="blue">
+<nav class="nav-extended">
   <div class="nav-wrapper container">
-    <a routerLink="/" class="brand-logo">Angular + Materialize</a>
+    <a routerLink="/" class="brand-logo">
+      <i class="material-icons left">flight</i>
+      Passenger Registration System
+    </a>
+    <a href="#" data-target="mobile-nav" class="sidenav-trigger">
+      <i class="material-icons">menu</i>
+    </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-      <li><a routerLink="/forms" routerLinkActive="active">Forms</a></li>
-      <li><a href="#" class="dropdown-trigger" data-target="dropdown1">More<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a routerLink="/form-and-table" routerLinkActive="active">Form and Table</a></li>
+      <li>
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i class="material-icons left">home</i>Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/forms" routerLinkActive="active">
+          <i class="material-icons left">description</i>Forms
+        </a>
+      </li>
+      <li>
+        <a routerLink="/form-and-table" routerLinkActive="active">
+          <i class="material-icons left">person_add</i>Registration
+        </a>
+      </li>
+      <li>
+        <a href="#" class="dropdown-trigger" data-target="dropdown1">
+          <i class="material-icons left">more_vert</i>More
+          <i class="material-icons right">arrow_drop_down</i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Secondary navigation bar -->
+  <div class="nav-content container">
+    <ul class="tabs tabs-transparent">
+      <li class="tab">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i class="material-icons tiny">dashboard</i> Dashboard
+        </a>
+      </li>
+      <li class="tab">
+        <a routerLink="/forms" routerLinkActive="active">
+          <i class="material-icons tiny">list</i> Forms
+        </a>
+      </li>
+      <li class="tab">
+        <a routerLink="/form-and-table" routerLinkActive="active">
+          <i class="material-icons tiny">group_add</i> Registration
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
 
+<!-- Mobile Navigation -->
+<ul class="sidenav" id="mobile-nav">
+  <li>
+    <div class="user-view">
+      <div class="background">
+        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80">
+      </div>
+      <a href="#user"><img class="circle" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"></a>
+      <a href="#name"><span class="white-text name">Admin User</span></a>
+      <a href="#email"><span class="white-text email">admin@example.com</span></a>
+    </div>
+  </li>
+  <li>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+      <i class="material-icons">home</i>Home
+    </a>
+  </li>
+  <li>
+    <a routerLink="/forms" routerLinkActive="active">
+      <i class="material-icons">description</i>Forms
+    </a>
+  </li>
+  <li>
+    <a routerLink="/form-and-table" routerLinkActive="active">
+      <i class="material-icons">person_add</i>Registration
+    </a>
+  </li>
+  <li><div class="divider"></div></li>
+  <li>
+    <a href="#!">
+      <i class="material-icons">info</i>About
+    </a>
+  </li>
+  <li>
+    <a href="#!">
+      <i class="material-icons">contact_support</i>Contact
+    </a>
+  </li>
+  <li>
+    <a href="#!">
+      <i class="material-icons">help</i>Help
+    </a>
+  </li>
+</ul>
+
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">About</a></li>
-  <li><a href="#!">Contact</a></li>
+  <li>
+    <a href="#!">
+      <i class="material-icons">info</i>About
+    </a>
+  </li>
+  <li>
+    <a href="#!">
+      <i class="material-icons">contact_support</i>Contact
+    </a>
+  </li>
   <li class="divider"></li>
-  <li><a href="#!">Documentation</a></li>
+  <li>
+    <a href="#!">
+      <i class="material-icons">description</i>Documentation
+    </a>
+  </li>
+  <li>
+    <a href="#!">
+      <i class="material-icons">settings</i>Settings
+    </a>
+  </li>
 </ul>

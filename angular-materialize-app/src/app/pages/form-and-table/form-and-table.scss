@@ -1,20 +1,251 @@
-// Materialize classes are used instead of custom CSS
-// .card provides padding, border, and shadow
-// .mb-30 provides 30px margin-bottom
-
+// Enhanced UI/UX styling
 .passenger-form {
   margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .card-content {
+    padding: 24px;
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .btn-small {
+        margin: 0;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+        }
+      }
+    }
+  }
+}
+
+.room-card {
+  margin-bottom: 25px;
+  border-left: 4px solid #26a69a;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .card-content {
+    padding: 24px;
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .btn-small {
+        margin: 0;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+        }
+      }
+    }
+  }
+}
+
+#rooms-container {
+  margin-top: 30px;
 }
 
 .mb-20 {
   margin-bottom: 40px;
 }
 
-.room-card {
-  margin-bottom: 30px;
-  border-left: 4px solid #26a69a;
+// Enhanced form styling
+.input-field {
+  margin-bottom: 20px;
+
+  input, select {
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(38, 166, 154, 0.2);
+    }
+  }
+
+  label {
+    font-weight: 500;
+    color: #555;
+  }
 }
 
-#rooms-container {
-  margin-top: 20px;
+// Enhanced button styling
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &.waves-effect {
+    overflow: hidden;
+  }
+}
+
+// Enhanced debug section
+.debug-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 30px;
+  border: 1px solid #e9ecef;
+
+  h5 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 8px;
+      color: #26a69a;
+    }
+  }
+
+  pre {
+    background: #2c3e50;
+    color: #ecf0f1;
+    border-radius: 6px;
+    padding: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    overflow-x: auto;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
+
+// Enhanced section headers
+.section-header {
+  margin: 30px 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #26a69a;
+
+  h4 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 10px;
+      color: #26a69a;
+    }
+  }
+}
+
+// Enhanced card styling
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+
+  .card-content {
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+  }
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+  .passenger-form, .room-card {
+    .card-content {
+      padding: 16px;
+    }
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 0 16px;
+  }
+}
+
+// Animation for new elements
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.passenger-form, .room-card {
+  animation: slideIn 0.3s ease-out;
+}
+
+// Enhanced checkbox styling
+.input-field input[type="checkbox"] + label {
+  color: #555;
+  font-weight: 500;
+
+  &:before {
+    border-radius: 3px;
+  }
+}
+
+// Enhanced select styling
+select {
+  border-radius: 4px;
+
+  &:focus {
+    border-color: #26a69a;
+  }
+}
+
+// Loading state
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+// Success/error states
+.success {
+  border-color: #4caf50 !important;
+}
+
+.error {
+  border-color: #f44336 !important;
 }

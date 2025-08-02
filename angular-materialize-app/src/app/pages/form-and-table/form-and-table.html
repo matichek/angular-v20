@@ -1,100 +1,128 @@
 <div class="container">
   <div class="row">
     <div class="col s12">
-      <h2>Form and Table</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12">
-      <!-- name, surname, email, address, post number, post, chekcbox "Horm holder" -->
-      <form id="form">
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="name" type="text" class="validate">
-            <label for="name">Name</label>
-          </div>
-          <div class="input-field col s6">
-            <input id="surname" type="text" class="validate">
-            <label for="surname">Surname</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="address" type="text" class="validate">
-            <label for="address">Address</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="post-number" type="text" class="validate">
-            <label for="post-number">Post Number</label>
-          </div>
-          <div class="input-field col s12">
-            <input id="post" type="text" class="validate">
-            <label for="post">Post</label>
-          </div>
-          <div class="input-field col s12 mb-20">
-            <label for="form-holder">
-              <input id="form-holder" type="checkbox" class="validate">
-              <span>Form holder</span>
-            </label>
-          </div>
-          <!-- add button to add additional passengers -->
-          <div class="input-field col s12">
-            <button id="add-passenger" class="btn waves-effect waves-light" type="button" (click)="addPassenger()">Add Passenger</button>
-          </div>
-
-          <div class="input-field col s12">
-            <button id="submit-button" class="btn waves-effect waves-light" type="submit" (click)="handleSubmit()">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Room Management Section -->
-  <div class="row">
-    <div class="col s12">
-      <h3>Room Management</h3>
-      <div class="input-field col s12">
-        <button class="btn waves-effect waves-light" type="button" (click)="addRoom()">Add Room</button>
-      </div>
-      <div id="rooms-container">
-        <!-- Room cards will be added here -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Debug Section -->
-  <div class="row">
-    <div class="col s12">
-      <h3>Debug - Real-time JSON Data</h3>
       <div class="card">
         <div class="card-content">
-          <pre id="debug-output">{{ debugData | json }}</pre>
+          <span class="card-title">
+            <i class="material-icons left">person_add</i>
+            Passenger Registration Form
+          </span>
+
+          <form id="form">
+            <!-- Form Holder Section -->
+            <div class="section-header">
+              <h4><i class="material-icons">account_circle</i>Form Holder Information</h4>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">person</i>
+                <input id="name" type="text" class="validate">
+                <label for="name">Name</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">person_outline</i>
+                <input id="surname" type="text" class="validate">
+                <label for="surname">Surname</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">location_on</i>
+                <input id="address" type="text" class="validate">
+                <label for="address">Address</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">markunread_mailbox</i>
+                <input id="post-number" type="text" class="validate">
+                <label for="post-number">Post Number</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">business</i>
+                <input id="post" type="text" class="validate">
+                <label for="post">Post</label>
+              </div>
+              <div class="input-field col s12 mb-20">
+                <label for="form-holder">
+                  <input id="form-holder" type="checkbox" class="validate">
+                  <span><i class="material-icons tiny">verified_user</i> Form holder</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Additional Passengers Section -->
+            <div class="section-header">
+              <h4><i class="material-icons">group_add</i>Additional Passengers</h4>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <button type="button" id="add-passenger" class="btn waves-effect waves-light" (click)="addPassenger()">
+                  <i class="material-icons left">person_add</i>
+                  Add Passenger
+                </button>
+              </div>
+            </div>
+
+            <!-- Room Management Section -->
+            <div class="section-header">
+              <h4><i class="material-icons">hotel</i>Room Management</h4>
+            </div>
+
+            <div class="row">
+              <div class="col s12">
+                <button type="button" class="btn waves-effect waves-light" (click)="addRoom()">
+                  <i class="material-icons left">add_business</i>
+                  Add Room
+                </button>
+              </div>
+            </div>
+
+            <div id="rooms-container"></div>
+
+            <!-- Submit Section -->
+            <div class="row">
+              <div class="col s12">
+                <button type="button" class="btn-large waves-effect waves-light" (click)="handleSubmit()">
+                  <i class="material-icons left">send</i>
+                  Submit Form
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
+
+      <!-- Debug Section -->
+      <div class="debug-section">
+        <h5>
+          <i class="material-icons">code</i>
+          Real-time JSON Data
+        </h5>
+        <pre id="debug-output">{{ debugData | json }}</pre>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // Event listeners for remove functionality
-  document.addEventListener('removePassenger', (event) => {
+  // Listen for custom events from component
+  document.addEventListener('removePassenger', function(event) {
     const passengerId = event.detail;
     // Call the component method
-    const component = document.querySelector('app-form-and-table')?.__ngContext__?.component;
-    if (component && component.removePassenger) {
-      component.removePassenger(passengerId);
+    if (window.angularComponent) {
+      window.angularComponent.removePassenger(passengerId);
     }
   });
 
-  document.addEventListener('removeRoom', (event) => {
+  document.addEventListener('removeRoom', function(event) {
     const roomId = event.detail;
     // Call the component method
-    const component = document.querySelector('app-form-and-table')?.__ngContext__?.component;
-    if (component && component.removeRoom) {
-      component.removeRoom(roomId);
+    if (window.angularComponent) {
+      window.angularComponent.removeRoom(roomId);
     }
   });
 </script>
