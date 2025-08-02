@@ -31,39 +31,41 @@ export class FormAndTableComponent implements AfterViewInit {
 
     // Create new passenger form
     const newForm = document.createElement('div');
-    newForm.className = 'passenger-form';
+    newForm.className = 'passenger-form card';
     newForm.innerHTML = `
-      <h5>Passenger ${this.passengerCount}</h5>
-      <div class="row">
-        <div class="input-field col s6">
-          <input id="name-${this.passengerCount}" type="text" class="validate">
-          <label for="name-${this.passengerCount}">Name</label>
-        </div>
-        <div class="input-field col s6">
-          <input id="surname-${this.passengerCount}" type="text" class="validate">
-          <label for="surname-${this.passengerCount}">Surname</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="email-${this.passengerCount}" type="email" class="validate">
-          <label for="email-${this.passengerCount}">Email</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="address-${this.passengerCount}" type="text" class="validate">
-          <label for="address-${this.passengerCount}">Address</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="post-number-${this.passengerCount}" type="text" class="validate">
-          <label for="post-number-${this.passengerCount}">Post Number</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="post-${this.passengerCount}" type="text" class="validate">
-          <label for="post-${this.passengerCount}">Post</label>
-        </div>
-        <div class="input-field col s12">
-          <label for="form-holder-${this.passengerCount}">
-            <input id="form-holder-${this.passengerCount}" type="checkbox" class="validate">
-            <span>Horm holder</span>
-          </label>
+      <div class="card-content">
+        <span class="card-title">Passenger ${this.passengerCount}</span>
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="name-${this.passengerCount}" type="text" class="validate">
+            <label for="name-${this.passengerCount}">Name</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="surname-${this.passengerCount}" type="text" class="validate">
+            <label for="surname-${this.passengerCount}">Surname</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="email-${this.passengerCount}" type="email" class="validate">
+            <label for="email-${this.passengerCount}">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="address-${this.passengerCount}" type="text" class="validate">
+            <label for="address-${this.passengerCount}">Address</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="post-number-${this.passengerCount}" type="text" class="validate">
+            <label for="post-number-${this.passengerCount}">Post Number</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="post-${this.passengerCount}" type="text" class="validate">
+            <label for="post-${this.passengerCount}">Post</label>
+          </div>
+          <div class="input-field col s12 mb-20">
+            <label for="form-holder-${this.passengerCount}">
+              <input id="form-holder-${this.passengerCount}" type="checkbox" class="validate">
+              <span>Horm holder</span>
+            </label>
+          </div>
         </div>
       </div>
     `;
