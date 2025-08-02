@@ -1,0 +1,439 @@
+// Enhanced home page styling
+.container {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+// Hero Section
+.hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  .card-content {
+    padding: 40px;
+
+    .hero-content {
+      text-align: center;
+      color: white;
+
+      .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          margin-right: 15px;
+          font-size: 2.8rem;
+        }
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+        line-height: 1.6;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .btn-large {
+          border-radius: 8px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+          }
+
+          i {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Section Titles
+.section-title {
+  color: #2c3e50;
+  font-weight: 600;
+  margin: 40px 0 30px 0;
+  display: flex;
+  align-items: center;
+
+  i {
+    margin-right: 12px;
+    color: #667eea;
+  }
+}
+
+// Feature Cards
+.feature-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-content {
+    padding: 30px;
+    text-align: center;
+
+    .feature-icon {
+      margin-bottom: 20px;
+
+      i {
+        font-size: 3rem;
+        color: #667eea;
+      }
+    }
+
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+  }
+
+  .card-action {
+    padding: 20px 30px;
+    border-top: 1px solid #f0f0f0;
+
+    a {
+      color: #667eea;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: #5a6fd8;
+        transform: translateX(5px);
+      }
+
+      i {
+        margin-right: 5px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+// Demo Card
+.demo-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+
+  .card-content {
+    padding: 30px;
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+
+      i {
+        margin-right: 10px;
+        color: #667eea;
+      }
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+  }
+
+  .demo-form {
+    .input-field {
+      margin-bottom: 20px;
+
+      input {
+        border-radius: 6px;
+        transition: all 0.3s ease;
+
+        &:focus {
+          box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+      }
+
+      label {
+        font-weight: 500;
+        color: #555;
+      }
+
+      i.prefix {
+        color: #667eea;
+      }
+    }
+
+    .btn {
+      border-radius: 6px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      i {
+        margin-right: 8px;
+      }
+    }
+
+    .btn-flat {
+      color: #667eea;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgba(102, 126, 234, 0.1);
+        color: #5a6fd8;
+      }
+
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+// Technology Cards
+.tech-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-content {
+    padding: 30px 20px;
+
+    i.large {
+      font-size: 3rem;
+      color: #667eea;
+      margin-bottom: 15px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Call to Action Card
+.cta-card {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  margin-top: 40px;
+
+  .card-content {
+    padding: 40px;
+    color: white;
+
+    h4 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      i {
+        margin-right: 12px;
+        color: #3498db;
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .btn-large {
+        border-radius: 8px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        i {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero-section {
+    .card-content {
+      padding: 30px 20px;
+
+      .hero-content {
+        .hero-title {
+          font-size: 2rem;
+
+          i {
+            font-size: 2.2rem;
+          }
+        }
+
+        .hero-subtitle {
+          font-size: 1rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: center;
+
+          .btn-large {
+            width: 100%;
+            max-width: 300px;
+          }
+        }
+      }
+    }
+  }
+
+  .feature-card,
+  .tech-card {
+    margin-bottom: 20px;
+  }
+
+  .demo-card {
+    .card-content {
+      padding: 20px;
+    }
+  }
+
+  .cta-card {
+    .card-content {
+      padding: 30px 20px;
+
+      h4 {
+        font-size: 1.5rem;
+      }
+
+      .cta-actions {
+        flex-direction: column;
+        align-items: center;
+
+        .btn-large {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-section,
+.feature-card,
+.demo-card,
+.tech-card,
+.cta-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.feature-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.feature-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.tech-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.tech-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.tech-card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+// Enhanced hover effects
+.card:hover {
+  cursor: pointer;
+}
+
+// Smooth transitions
+* {
+  transition: all 0.3s ease;
+}

@@ -1,0 +1,153 @@
+// Enhanced footer styling
+.page-footer {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  margin-top: 50px;
+
+  .container {
+    .row {
+      .col {
+        h5 {
+          font-weight: 600;
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+
+          i {
+            margin-right: 8px;
+            color: #3498db;
+          }
+        }
+
+        p {
+          line-height: 1.6;
+          font-size: 1rem;
+        }
+
+        ul {
+          li {
+            margin-bottom: 8px;
+
+            a {
+              color: #bdc3c7;
+              font-weight: 500;
+              transition: all 0.3s ease;
+              display: flex;
+              align-items: center;
+
+              &:hover {
+                color: #3498db;
+                transform: translateX(5px);
+              }
+
+              i {
+                margin-right: 8px;
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-copyright {
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    .container {
+      .row {
+        .col {
+          .social-links {
+            a {
+              display: inline-block;
+              margin-left: 15px;
+              transition: all 0.3s ease;
+
+              &:hover {
+                color: #3498db !important;
+                transform: scale(1.2);
+              }
+
+              i {
+                font-size: 1.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+  .page-footer {
+    .container {
+      .row {
+        .col {
+          text-align: center;
+          margin-bottom: 20px;
+
+          h5 {
+            justify-content: center;
+          }
+
+          ul {
+            li {
+              text-align: center;
+
+              a {
+                justify-content: center;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .footer-copyright {
+      .container {
+        .row {
+          .col {
+            text-align: center;
+
+            .social-links {
+              text-align: center;
+              margin-top: 10px;
+
+              a {
+                margin: 0 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animation for footer elements
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-footer {
+  animation: slideUp 0.5s ease-out;
+}
+
+// Enhanced hover effects
+.page-footer a:hover {
+  text-decoration: none;
+}
+
+// Smooth transitions
+.page-footer * {
+  transition: all 0.3s ease;
+}

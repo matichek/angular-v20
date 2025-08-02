@@ -12,7 +12,8 @@ declare var M: any;
 export class HeaderComponent implements AfterViewInit {
 
   ngAfterViewInit() {
-    // Initialize Materialize dropdown
+    // Initialize Materialize components
     M.Dropdown.init(document.querySelectorAll('.dropdown-trigger'));
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
   }
 }

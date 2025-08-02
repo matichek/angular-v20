@@ -1,93 +1,228 @@
-<div class="container" style="margin-top: 2rem;">
+<div class="container">
+  <!-- Hero Section -->
   <div class="row">
     <div class="col s12">
-      <h1>Welcome to Angular v20 with Materialize CSS</h1>
-      <p class="flow-text">This is a demo showcasing Materialize components in Angular v20.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="yellow-text">This is a link</a>
-          <a href="#" class="yellow-text">This is a link</a>
-        </div>
-      </div>
-    </div>
-    <div class="col s12 m6">
-      <div class="card teal">
-        <div class="card-content white-text">
-          <span class="card-title">Another Card</span>
-          <p>Materialize CSS provides a beautiful Material Design framework.</p>
-        </div>
-        <div class="card-action">
-          <a href="#" class="yellow-text">Action 1</a>
-          <a href="#" class="yellow-text">Action 2</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col s12">
-      <h4>Quick Form Example</h4>
-      <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <input id="first_name" type="text" class="validate">
-              <label for="first_name">First Name</label>
-            </div>
-            <div class="input-field col s6">
-              <input id="last_name" type="text" class="validate">
-              <label for="last_name">Last Name</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="email" type="email" class="validate">
-              <label for="email">Email</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col s12">
-              <button class="btn waves-effect waves-light" type="submit">
-                Submit
-                <i class="material-icons right">send</i>
-              </button>
-              <a routerLink="/forms" class="btn-flat waves-effect" style="margin-left: 10px;">
-                View More Forms
+      <div class="hero-section card">
+        <div class="card-content">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <i class="material-icons left">flight</i>
+              Welcome to Passenger Registration System
+            </h1>
+            <p class="hero-subtitle flow-text">
+              A modern, efficient system for managing passenger registrations and room assignments.
+              Built with Angular v20 and Materialize CSS for the best user experience.
+            </p>
+            <div class="hero-actions">
+              <a routerLink="/form-and-table" class="btn-large waves-effect waves-light">
+                <i class="material-icons left">person_add</i>
+                Start Registration
+              </a>
+              <a routerLink="/forms" class="btn-large waves-effect waves-light grey lighten-1">
+                <i class="material-icons left">description</i>
+                View Forms
               </a>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- Features Section -->
   <div class="row">
     <div class="col s12">
-      <h4>Buttons</h4>
-      <a class="waves-effect waves-light btn">button</a>
-      <a class="waves-effect waves-light btn red">red</a>
-      <a class="waves-effect waves-light btn green">green</a>
-      <a class="waves-effect waves-light btn purple">purple</a>
+      <h3 class="section-title">
+        <i class="material-icons left">star</i>
+        Key Features
+      </h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m4">
+      <div class="feature-card card">
+        <div class="card-content">
+          <div class="feature-icon">
+            <i class="material-icons">group_add</i>
+          </div>
+          <span class="card-title">Dynamic Passenger Management</span>
+          <p>Add and remove passengers dynamically with real-time form validation and data collection.</p>
+        </div>
+        <div class="card-action">
+          <a routerLink="/form-and-table" class="waves-effect waves-light">
+            <i class="material-icons tiny">arrow_forward</i> Try It
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m4">
+      <div class="feature-card card">
+        <div class="card-content">
+          <div class="feature-icon">
+            <i class="material-icons">hotel</i>
+          </div>
+          <span class="card-title">Smart Room Assignment</span>
+          <p>Intelligent room management with bed count selection and passenger assignment capabilities.</p>
+        </div>
+        <div class="card-action">
+          <a routerLink="/form-and-table" class="waves-effect waves-light">
+            <i class="material-icons tiny">arrow_forward</i> Explore
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m4">
+      <div class="feature-card card">
+        <div class="card-content">
+          <div class="feature-icon">
+            <i class="material-icons">code</i>
+          </div>
+          <span class="card-title">Real-time Debug</span>
+          <p>Live JSON output showing all form data, passenger information, and room assignments.</p>
+        </div>
+        <div class="card-action">
+          <a routerLink="/form-and-table" class="waves-effect waves-light">
+            <i class="material-icons tiny">arrow_forward</i> View
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Demo Section -->
+  <div class="row">
+    <div class="col s12">
+      <h3 class="section-title">
+        <i class="material-icons left">play_circle</i>
+        Quick Demo
+      </h3>
     </div>
   </div>
 
   <div class="row">
     <div class="col s12">
-      <div class="card-panel teal lighten-2">
-        <span class="white-text">
-          <i class="material-icons left">info</i>
-          This is a demo application showcasing Angular v20 with Materialize CSS.
-          Navigate to different pages using the menu above!
-        </span>
+      <div class="demo-card card">
+        <div class="card-content">
+          <span class="card-title">
+            <i class="material-icons left">description</i>
+            Sample Form
+          </span>
+          <p>Experience our enhanced form components with Materialize CSS styling.</p>
+
+          <form class="demo-form">
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">person</i>
+                <input id="demo_first_name" type="text" class="validate">
+                <label for="demo_first_name">First Name</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">person_outline</i>
+                <input id="demo_last_name" type="text" class="validate">
+                <label for="demo_last_name">Last Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input id="demo_email" type="email" class="validate">
+                <label for="demo_email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit">
+                  <i class="material-icons left">send</i>
+                  Submit Demo
+                </button>
+                <a routerLink="/form-and-table" class="btn-flat waves-effect">
+                  <i class="material-icons left">arrow_forward</i>
+                  Go to Full Registration
+                </a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Technology Stack -->
+  <div class="row">
+    <div class="col s12">
+      <h3 class="section-title">
+        <i class="material-icons left">build</i>
+        Technology Stack
+      </h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="tech-card card">
+        <div class="card-content center-align">
+          <i class="material-icons large">code</i>
+          <span class="card-title">Angular v20</span>
+          <p>Latest Angular framework with standalone components and modern development experience.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <div class="tech-card card">
+        <div class="card-content center-align">
+          <i class="material-icons large">palette</i>
+          <span class="card-title">Materialize CSS</span>
+          <p>Material Design framework providing beautiful, responsive components and animations.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <div class="tech-card card">
+        <div class="card-content center-align">
+          <i class="material-icons large">language</i>
+          <span class="card-title">TypeScript</span>
+          <p>Type-safe JavaScript with enhanced IDE support and better development experience.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m3">
+      <div class="tech-card card">
+        <div class="card-content center-align">
+          <i class="material-icons large">storage</i>
+          <span class="card-title">Modern Web</span>
+          <p>Built with modern web standards, responsive design, and progressive enhancement.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="row">
+    <div class="col s12">
+      <div class="cta-card card">
+        <div class="card-content center-align">
+          <h4>
+            <i class="material-icons left">rocket_launch</i>
+            Ready to Get Started?
+          </h4>
+          <p class="flow-text">Experience the full power of our passenger registration system.</p>
+          <div class="cta-actions">
+            <a routerLink="/form-and-table" class="btn-large waves-effect waves-light">
+              <i class="material-icons left">person_add</i>
+              Start Registration
+            </a>
+            <a routerLink="/forms" class="btn-large waves-effect waves-light grey lighten-1">
+              <i class="material-icons left">description</i>
+              Browse Forms
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
