@@ -36,20 +36,65 @@
           <div class="input-field col s12 mb-20">
             <label for="form-holder">
               <input id="form-holder" type="checkbox" class="validate">
-              <span>Horm holder</span>
+              <span>Form holder</span>
             </label>
           </div>
           <!-- add button to add additional passengers -->
           <div class="input-field col s12">
-            <button id="add-passenger" class="btn waves-effect waves-light" type="button" (click)="addPassenger()">Add
-              Passenger</button>
+            <button id="add-passenger" class="btn waves-effect waves-light" type="button" (click)="addPassenger()">Add Passenger</button>
           </div>
+
           <div class="input-field col s12">
-            <button id="submit-button" class="btn waves-effect waves-light" type="submit"
-              (click)="handleSubmit()">Submit</button>
+            <button id="submit-button" class="btn waves-effect waves-light" type="submit" (click)="handleSubmit()">Submit</button>
           </div>
         </div>
       </form>
     </div>
   </div>
+
+  <!-- Room Management Section -->
+  <div class="row">
+    <div class="col s12">
+      <h3>Room Management</h3>
+      <div class="input-field col s12">
+        <button class="btn waves-effect waves-light" type="button" (click)="addRoom()">Add Room</button>
+      </div>
+      <div id="rooms-container">
+        <!-- Room cards will be added here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Debug Section -->
+  <div class="row">
+    <div class="col s12">
+      <h3>Debug - Real-time JSON Data</h3>
+      <div class="card">
+        <div class="card-content">
+          <pre id="debug-output">{{ debugData | json }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  // Event listeners for remove functionality
+  document.addEventListener('removePassenger', (event) => {
+    const passengerId = event.detail;
+    // Call the component method
+    const component = document.querySelector('app-form-and-table')?.__ngContext__?.component;
+    if (component && component.removePassenger) {
+      component.removePassenger(passengerId);
+    }
+  });
+
+  document.addEventListener('removeRoom', (event) => {
+    const roomId = event.detail;
+    // Call the component method
+    const component = document.querySelector('app-form-and-table')?.__ngContext__?.component;
+    if (component && component.removeRoom) {
+      component.removeRoom(roomId);
+    }
+  });
+</script>
