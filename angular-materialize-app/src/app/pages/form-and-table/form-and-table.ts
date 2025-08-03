@@ -1,5 +1,7 @@
 import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { JsonPipe } from '@angular/common';
+import { ExtrasService } from '../../services/extras.services';
+import { Extra } from '../../models/extras.model';
 
 declare var M: any;
 
@@ -25,7 +27,8 @@ interface Room {
   selector: 'app-form-and-table',
   templateUrl: './form-and-table.html',
   styleUrls: ['./form-and-table.scss'],
-  imports: [JsonPipe]
+  imports: [JsonPipe],
+  providers: [ExtrasService]
 })
 export class FormAndTableComponent implements AfterViewInit {
   passengerCount = 0;
@@ -35,8 +38,10 @@ export class FormAndTableComponent implements AfterViewInit {
   debugData: any = {};
   usedIds = new Set<string>(); // Track used IDs to ensure uniqueness
   passengerIds = new Map<string, string>(); // Store passenger IDs by form element
+  extras: Extra[] = [];
+  passengerExtras: Map<string, Set<number>> = new Map(); // Track extras for each passenger
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private extrasService: ExtrasService) {}
 
   ngAfterViewInit() {
     // Initialize Materialize form components
@@ -49,6 +54,9 @@ export class FormAndTableComponent implements AfterViewInit {
     if (indeterminateCheckbox) {
       (indeterminateCheckbox as HTMLInputElement).indeterminate = true;
     }
+
+    // Load extras automatically
+    this.loadExtras();
 
     // Set up form change listeners for real-time updates
     this.setupFormListeners();
@@ -73,14 +81,25 @@ export class FormAndTableComponent implements AfterViewInit {
     }
   }
 
-  addPassenger() {
+    addPassenger() {
     this.passengerCount++;
     console.log('Adding passenger number:', this.passengerCount);
+
+    // Generate extras checkboxes dynamically only if extras are loaded
+    const extrasCheckboxes = this.extras.length > 0 ? this.extras.map(extra => `
+      <p>
+        <label>
+          <input type="checkbox" id="extra-${extra.id}-${this.passengerCount}" class="filled-in"
+                 onchange="document.dispatchEvent(new CustomEvent('togglePassengerExtra', {detail: {passengerId: 'passenger-${this.passengerCount}', extraId: ${extra.id}}}))" />
+          <span>${extra.name} - $${extra.price}</span>
+        </label>
+      </p>
+    `).join('') : '<p>Loading extras...</p>';
 
     // Create new passenger form
     const newForm = document.createElement('div');
     newForm.className = 'passenger-form card';
-    newForm.innerHTML = `
+        newForm.innerHTML = `
       <div class="card-content">
         <div class="card-title">
           <span><i class="material-icons">person</i> Passenger ${this.passengerCount}</span>
@@ -121,9 +140,19 @@ export class FormAndTableComponent implements AfterViewInit {
           </div>
           <div class="input-field col s12 mb-20">
             <label for="form-holder-${this.passengerCount}">
-              <input id="form-holder-${this.passengerCount}" type="checkbox" class="validate">
+              <input id="form-holder-${this.passengerCount}" type="checkbox" class="filled-in validate">
               <span><i class="material-icons tiny">verified_user</i> Form holder</span>
             </label>
+          </div>
+
+          <div class="input-field col s12">
+            <i class="material-icons prefix">attach_money</i>
+            <div class="passenger-extras">
+              <label>Select Extras:</label>
+              <div class="extras-checkboxes">
+                ${extrasCheckboxes}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -135,14 +164,133 @@ export class FormAndTableComponent implements AfterViewInit {
       form.appendChild(newForm);
       console.log('Passenger form added successfully');
 
+      // Initialize Materialize components for the new form
+      M.updateTextFields();
+
       // Add event listeners to the new form
       this.addFormListeners(newForm);
 
       // Update debug data
       this.updateDebugData();
+
+      // Refresh room dropdowns to include new passenger
+      this.refreshRoomDropdowns();
     } else {
       console.error('Form element not found!');
     }
+  }
+
+  private refreshRoomDropdowns() {
+    // Find all room cards and update their passenger assignment dropdowns
+    const roomCards = document.querySelectorAll('.room-card');
+    roomCards.forEach((roomCard, roomIndex) => {
+      const roomNumber = roomIndex + 1;
+      const passengerSelect = roomCard.querySelector(`#passenger-assignment-${roomNumber}`) as HTMLSelectElement;
+      if (passengerSelect) {
+        const passengerOptions = this.getPassengerOptions();
+        passengerSelect.innerHTML = `
+          <option value="" disabled>Assign passengers</option>
+          ${passengerOptions}
+        `;
+        // Reinitialize Materialize select
+        M.FormSelect.init(passengerSelect);
+      }
+    });
+  }
+
+    loadExtras() {
+    this.extrasService.getExtras().subscribe({
+      next: (extras: Extra[]) => {
+        this.extras = extras;
+        console.log('Extras loaded automatically:', extras);
+        this.cdr.detectChanges();
+
+        // Refresh extras display for existing passengers
+        this.refreshPassengerExtras();
+      },
+      error: (error) => {
+        console.error('Error loading extras:', error);
+        // Fallback to static extras if HTTP request fails
+        this.extras = [
+          { id: 1, name: "Extra 1", description: "Description 1", price: 100 },
+          { id: 2, name: "Extra 2", description: "Description 2", price: 200 },
+          { id: 3, name: "Extra 3", description: "Description 3", price: 300 }
+        ];
+        this.cdr.detectChanges();
+        this.refreshPassengerExtras();
+      }
+    });
+  }
+
+  private refreshPassengerExtras() {
+    // Find all passenger forms and update their extras sections
+    const passengerForms = document.querySelectorAll('.passenger-form');
+    passengerForms.forEach((form, index) => {
+      const extrasContainer = form.querySelector('.extras-checkboxes');
+      if (extrasContainer && this.extras.length > 0) {
+        // Extract the actual passenger number from the form's input IDs
+        const nameInput = form.querySelector('input[id^="name-"]') as HTMLInputElement;
+        let passengerNumber = 1; // default
+        if (nameInput) {
+          const match = nameInput.id.match(/name-(\d+)/);
+          if (match) {
+            passengerNumber = parseInt(match[1]);
+          }
+        }
+
+        const newExtrasCheckboxes = this.extras.map(extra => `
+          <p>
+            <label>
+              <input type="checkbox" id="extra-${extra.id}-${passengerNumber}" class="filled-in"
+                     onchange="document.dispatchEvent(new CustomEvent('togglePassengerExtra', {detail: {passengerId: 'passenger-${passengerNumber}', extraId: ${extra.id}}}))" />
+              <span>${extra.name} - $${extra.price}</span>
+            </label>
+          </p>
+        `).join('');
+        extrasContainer.innerHTML = newExtrasCheckboxes;
+      }
+    });
+  }
+
+  listExtras() {
+    this.loadExtras();
+  }
+
+    togglePassengerExtra(passengerId: string, extraId: number) {
+    // Normalize passenger ID to match the format used in getFormData
+    let normalizedPassengerId: string;
+    if (passengerId === 'form-holder') {
+      normalizedPassengerId = 'form-holder';
+    } else {
+      // Extract passenger number from format like 'passenger-1'
+      const match = passengerId.match(/passenger-(\d+)/);
+      if (match) {
+        normalizedPassengerId = `passenger-${match[1]}`;
+      } else {
+        normalizedPassengerId = passengerId;
+      }
+    }
+
+    if (!this.passengerExtras.has(normalizedPassengerId)) {
+      this.passengerExtras.set(normalizedPassengerId, new Set());
+    }
+
+    const passengerExtraSet = this.passengerExtras.get(normalizedPassengerId)!;
+    if (passengerExtraSet.has(extraId)) {
+      passengerExtraSet.delete(extraId);
+    } else {
+      passengerExtraSet.add(extraId);
+    }
+
+    console.log(`Passenger ${normalizedPassengerId} extras:`, Array.from(passengerExtraSet));
+    this.updateDebugData();
+  }
+
+
+
+  isPassengerExtraSelected(passengerId: string, extraId: number): boolean {
+    const passengerExtraSet = this.passengerExtras.get(passengerId);
+    return passengerExtraSet ? passengerExtraSet.has(extraId) : false;
   }
 
   removePassenger(passengerId: number) {
@@ -161,7 +309,15 @@ export class FormAndTableComponent implements AfterViewInit {
     if (passengerFormToRemove) {
       passengerFormToRemove.remove();
       console.log(`Passenger ${passengerId} removed`);
+
+      // We don't need to decrement passengerCount as we are now relying on querying the DOM
+      // this.passengerCount = Math.max(0, this.passengerCount - 1);
+
+      // Update debug data
       this.updateDebugData();
+
+      // Refresh room dropdowns to remove the deleted passenger
+      this.refreshRoomDropdowns();
     } else {
       console.error(`Passenger ${passengerId} not found for removal`);
     }
@@ -205,8 +361,8 @@ export class FormAndTableComponent implements AfterViewInit {
             <label for="passenger-assignment-${this.roomCount}">Assign Passengers</label>
           </div>
         </div>
-      </div>
-    `;
+          </div>
+        `;
 
     // Add to rooms container
     const roomsContainer = document.getElementById('rooms-container');
@@ -256,11 +412,27 @@ export class FormAndTableComponent implements AfterViewInit {
     element.addEventListener('change', () => {
       this.updateDebugData();
     });
+
+    // Also listen for checkbox changes specifically
+    const checkboxes = element.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        this.updateDebugData();
+      });
+    });
   }
 
   addRoomListeners(element: HTMLElement) {
     element.addEventListener('change', () => {
       this.updateDebugData();
+    });
+
+    // Listen for select changes specifically
+    const selects = element.querySelectorAll('select');
+    selects.forEach(select => {
+      select.addEventListener('change', () => {
+        this.updateDebugData();
+      });
     });
   }
 
@@ -281,13 +453,23 @@ export class FormAndTableComponent implements AfterViewInit {
       passengers.push(formHolderData);
     }
 
-    // Get additional passengers data
-    for (let i = 1; i <= this.passengerCount; i++) {
-      const passengerData = this.getFormData(`-${i}`, false);
-      if (passengerData) {
-        passengers.push(passengerData);
+    // Get data from dynamically added passenger forms
+    const passengerForms = document.querySelectorAll('.passenger-form');
+    passengerForms.forEach(form => {
+      // Extract the actual passenger number from the form's input ID to ensure we get the right one
+      const nameInput = form.querySelector('input[id^="name-"]') as HTMLInputElement;
+      if (nameInput) {
+        const match = nameInput.id.match(/name-(\d+)/);
+        if (match) {
+          const passengerNumber = match[1];
+          const suffix = `-${passengerNumber}`;
+          const passengerData = this.getFormData(suffix, false);
+          if (passengerData) {
+            passengers.push(passengerData);
+          }
+        }
       }
-    }
+    });
 
     // Get room assignments with passenger IDs
     const rooms = this.getRoomDataWithPassengerIds(passengers);
@@ -316,6 +498,19 @@ export class FormAndTableComponent implements AfterViewInit {
       // Get or generate consistent passenger ID
       const passengerId = this.getOrCreatePassengerId(suffix, isFormHolder);
 
+      // Get passenger extras - handle both form holder and added passengers
+      let passengerKey: string;
+      if (isFormHolder) {
+        passengerKey = 'form-holder';
+      } else {
+        // For added passengers, extract the passenger number from the suffix
+        const passengerNumber = suffix.replace('-', '');
+        passengerKey = `passenger-${passengerNumber}`;
+      }
+
+      const passengerExtras = this.passengerExtras.get(passengerKey) || new Set();
+      const selectedExtras = this.extras.filter(extra => passengerExtras.has(extra.id));
+
       return {
         id: passengerId,
         name: name,
@@ -324,7 +519,9 @@ export class FormAndTableComponent implements AfterViewInit {
         address: address || '',
         postNumber: postNumber || '',
         post: post || '',
-        isFormHolder: isFormHolder
+        isFormHolder: isFormHolder,
+        selectedExtras: selectedExtras,
+        extrasTotal: selectedExtras.reduce((sum, extra) => sum + extra.price, 0)
       };
     }
 
@@ -404,17 +601,23 @@ export class FormAndTableComponent implements AfterViewInit {
     }
 
     // Add additional passengers if not already assigned
-    for (let i = 1; i <= this.passengerCount; i++) {
-      const name = (document.getElementById(`name-${i}`) as HTMLInputElement)?.value;
-      const surname = (document.getElementById(`surname-${i}`) as HTMLInputElement)?.value;
-      if (name && surname) {
-        // Get consistent passenger ID
-        const passengerId = this.getOrCreatePassengerId(`-${i}`, false);
-        if (!assignedPassengers.includes(passengerId)) {
-          options += `<option value="${passengerId}">${name} ${surname} (Passenger ${i})</option>`;
+    const passengerForms = document.querySelectorAll('.passenger-form');
+    passengerForms.forEach(form => {
+      const nameInput = form.querySelector('input[id^="name-"]') as HTMLInputElement;
+      const surnameInput = form.querySelector('input[id^="surname-"]') as HTMLInputElement;
+
+      if (nameInput && surnameInput && nameInput.value && surnameInput.value) {
+        const match = nameInput.id.match(/name-(\d+)/);
+        if (match) {
+          const passengerNumber = match[1];
+          const suffix = `-${passengerNumber}`;
+          const passengerId = this.getOrCreatePassengerId(suffix, false);
+          if (!assignedPassengers.includes(passengerId)) {
+            options += `<option value="${passengerId}">${nameInput.value} ${surnameInput.value} (Passenger ${passengerNumber})</option>`;
+          }
         }
       }
-    }
+    });
 
     return options;
   }

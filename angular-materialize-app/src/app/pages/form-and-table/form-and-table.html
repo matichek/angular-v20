@@ -51,6 +51,28 @@
                   <span><i class="material-icons tiny">verified_user</i> Form holder</span>
                 </label>
               </div>
+
+              <div class="input-field col s12">
+                <i class="material-icons prefix">attach_money</i>
+                <div class="passenger-extras">
+                  <label>Select Extras:</label>
+                  <div class="extras-checkboxes">
+                    @if (extras.length > 0) {
+                      @for (extra of extras; track extra.id) {
+                        <p>
+                          <label>
+                            <input type="checkbox" [id]="'form-holder-extra-' + extra.id" class="filled-in"
+                                   (change)="togglePassengerExtra('form-holder', extra.id)" />
+                            <span>{{ extra.name }} - ${{ extra.price }}</span>
+                          </label>
+                        </p>
+                      }
+                    } @else {
+                      <p>Loading extras...</p>
+                    }
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Additional Passengers Section -->
@@ -81,7 +103,7 @@
               </div>
             </div>
 
-            <div id="rooms-container"></div>
+                         <div id="rooms-container"></div>
 
             <!-- Submit Section -->
             <div class="row">
@@ -110,7 +132,7 @@
 
 <script>
   // Listen for custom events from component
-  document.addEventListener('removePassenger', function(event) {
+  document.addEventListener('removePassenger', function (event) {
     const passengerId = event.detail;
     // Call the component method
     if (window.angularComponent) {
@@ -118,11 +140,19 @@
     }
   });
 
-  document.addEventListener('removeRoom', function(event) {
+  document.addEventListener('removeRoom', function (event) {
     const roomId = event.detail;
     // Call the component method
     if (window.angularComponent) {
       window.angularComponent.removeRoom(roomId);
+    }
+  });
+
+  document.addEventListener('togglePassengerExtra', function (event) {
+    const { passengerId, extraId } = event.detail;
+    // Call the component method
+    if (window.angularComponent) {
+      window.angularComponent.togglePassengerExtra(passengerId, extraId);
     }
   });
 </script>
