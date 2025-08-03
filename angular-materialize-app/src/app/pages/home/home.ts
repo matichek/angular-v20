@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { signal } from '@angular/core';
+import { signal, computed } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { UserProfileComponent } from '../../components/UserProfile/UserProfile';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, ReactiveFormsModule, JsonPipe],
+  imports: [RouterLink, ReactiveFormsModule, JsonPipe, UserProfileComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
 export class HomeComponent {
 
   counterSignal = signal(0);
+  userName = signal('');
 
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -35,6 +37,7 @@ export class HomeComponent {
   // Update form values signal when form changes
   onFormChange() {
     this.formValuesSignal.set(this.form.value);
+    this.userName.set(this.form.value.name || '');
   }
 
   // Get form controls for template
@@ -49,4 +52,18 @@ export class HomeComponent {
   get messageControl() {
     return this.form.get('message');
   }
+
+  // signal + computed showcase
+
+  isTrial = signal(false);
+  isTrialExtended = signal(false);
+
+  showTrialDuration = computed(() => this.isTrial() && !this.isTrialExtended());
+
+  activateTrial() {
+    this.isTrial.set(true);
+  }
+
+
+
 }

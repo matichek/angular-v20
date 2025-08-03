@@ -272,8 +272,8 @@
             <div class="row">
               <div class="input-field col s12">
                 <i class="material-icons prefix">email</i>
-                <input id="demo_email" type="email" formControlName="email" class="validate" />
-                <label for="demo_email">Email</label>
+                <input id="demo_email2" type="email" formControlName="email" class="validate" />
+                <label for="demo_email2">Email</label>
                 <span class="helper-text" data-error="Valid email is required" data-success="Email is valid"></span>
               </div>
             </div>
@@ -311,5 +311,9 @@
     </div>
   </div>
 
-
+  <div class="row">
+    <div class="col s12">
+      <user-profile [userName]="userName()"></user-profile>
+    </div>
+  </div>
 </div>
