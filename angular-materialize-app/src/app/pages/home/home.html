@@ -226,4 +226,90 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <h4>
+            <i class="material-icons left">calculate</i>
+            Counter: {{ counterSignal() }}
+          </h4>
+          <div class="counter-actions">
+            <button class="btn waves-effect waves-light" (click)="increment()">
+              <i class="material-icons left">add</i>
+              Increment
+            </button>
+            <button class="btn waves-effect waves-light red" (click)="decrement()">
+              <i class="material-icons left">remove</i>
+              Decrement
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content">
+          <h4>
+            <i class="material-icons left">description</i>
+            Reactive Form Demo
+          </h4>
+          <p>This form demonstrates Angular reactive forms with signals integration.</p>
+
+          <form [formGroup]="form" (ngSubmit)="onFormChange()">
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">person</i>
+                <input id="demo_name" type="text" formControlName="name" class="validate" />
+                <label for="demo_name">Name</label>
+                <span class="helper-text" data-error="Name is required" data-success="Name is valid"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">email</i>
+                <input id="demo_email" type="email" formControlName="email" class="validate" />
+                <label for="demo_email">Email</label>
+                <span class="helper-text" data-error="Valid email is required" data-success="Email is valid"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">message</i>
+                <textarea id="demo_message" formControlName="message" class="materialize-textarea validate"></textarea>
+                <label for="demo_message">Message</label>
+                <span class="helper-text" data-error="Message is required" data-success="Message is valid"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit">
+                  <i class="material-icons left">send</i>
+                  Submit Form
+                </button>
+                <button class="btn-flat waves-effect" type="button" (click)="onFormChange()">
+                  <i class="material-icons left">refresh</i>
+                  Update Signal
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div class="form-values-display">
+            <h5>
+              <i class="material-icons left">code</i>
+              Form Values (Signal)
+            </h5>
+            <pre>{{ formValuesSignal() | json }}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
